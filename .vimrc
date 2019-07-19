@@ -299,7 +299,7 @@ nnoremap <C-F2> :vert diffsplit
 "nnoremap <C-n> :CtrlPFunky<Cr>
 "列出当前目录文件  
 map <F3> :NERDTreeToggle<CR>
-imap <F3> <ESC> :NERDTreeToggle<CR>
+"imap <F3> <ESC> :NERDTreeToggle<CR>
 "打开树状文件目录  
 map <C-F3> \be  
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
@@ -537,7 +537,6 @@ Plug 'https://github.com/othree/tern_for_vim_coffee.git'
 Plug 'https://github.com/vim-scripts/JavaScript-Indent.git'
 Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
 Plug 'Valloric/YouCompleteMe'
-"Plug 'https://github.com/ycm-core/ycmd.git'
 Plug 'davidhalter/jedi-vim'
 Plug 'VundleVim/Vundle.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -565,6 +564,7 @@ Plug 'suan/vim-instant-markdown'
 Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'kannokanno/previm'
+Plug 'tell-k/vim-autopep8'
 Plug 'tyru/open-browser.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -623,7 +623,7 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 nnoremap f :NERDTreeToggle
-map <F3> :NERDTree<CR> 
+map <F3> :NERDTreeToggle<CR> 
 
 let $LANG = 'zh_CN.UTF-8'
 source $VIMRUNTIME/delmenu.vim
@@ -741,6 +741,5 @@ hi User7 ctermfg=darkred  ctermbg=blue  cterm=bold
 hi User8 ctermfg=231  ctermbg=blue
 "hi User9 ctermfg=#ffffff  ctermbg=#810085
 hi User0 ctermfg=yellow  ctermbg=138
-
 
 
