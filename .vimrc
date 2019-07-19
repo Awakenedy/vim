@@ -71,8 +71,13 @@ filetype plugin on
 "共享剪贴板  
 set clipboard+=unnamed 
 "自动保存
-let g:auto_save = 1
+let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
+augroup ft_markdown
+  au!
+  au FileType markdown let b:auto_save = 1
+augroup END
+
 "au CursorHoldI * call AutoSave()
 "make 运行
 set makeprg=g++\ -Wall\ \ %
