@@ -372,6 +372,17 @@ func FormartSrc()
 endfunc
 "结束定义FormartSrc
 
+"配置vim-autoformat插件
+"F6自动格式化代码
+"noremap <F6> :Autoformat<CR>
+"let g:autoformat_verbosemode=1
+"保存时自动格式化代码，针对所有支持的文件
+au BufWrite * :Autoformat
+"保存时自动格式化PHP代码
+"au BufWrite *.php :Autoformat
+let g:formatdef_my_html = '"html-beautify -s 4"'
+let g:formatters_html = ['my_html']
+
 " 对 HTML 元素进行转义：< -> &lt;、> -> &gt;、& -> &amp;、空格 -> &nbsp;、行尾添加 <br />
 " 先后顺序敏感
 function HtmlEscape()
@@ -541,6 +552,7 @@ Plug 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 Plug 'https://github.com/othree/tern_for_vim_coffee.git'
 Plug 'https://github.com/vim-scripts/JavaScript-Indent.git'
 Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
+Plug 'Chiel92/vim-autoformat'
 Plug 'Valloric/YouCompleteMe'
 Plug 'davidhalter/jedi-vim'
 Plug 'VundleVim/Vundle.vim'
