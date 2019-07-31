@@ -6,7 +6,7 @@ Installation
 
   cd  ~/.vim/bundle/YouCompleteMe
   
-  python3 install.py
+  python3 install.py --clang-completer
 
 Install syntastic
 
