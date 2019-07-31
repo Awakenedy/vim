@@ -505,6 +505,7 @@ set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
 
 "set nocompatible               " be iMproved
 "filetype off                   " required!
