@@ -9,4 +9,5 @@ Installation
   python3 install.py
 
 Install syntastic
+
   cd ~/.vim/bundle && git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
