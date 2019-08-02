@@ -430,6 +430,8 @@ set wildmenu
 set backspace=2
 " 允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
+"设定折叠
+set fdm=marker
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set mouse=a
 set selection=exclusive
