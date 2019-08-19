@@ -378,6 +378,10 @@ endfunc
 "let g:autoformat_verbosemode=1
 "保存时自动格式化代码，针对所有支持的文件
 au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+"autocmd FileType vim,tex let b:autoformat_autoindent=0
 "保存时自动格式化PHP代码
 "au BufWrite *.php :Autoformat
 let g:formatdef_my_html = '"html-beautify -s 4"'
