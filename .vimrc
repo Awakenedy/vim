@@ -1,14 +1,14 @@
 map <F9> :call SaveInputData()<CR>
 func SaveInputData()
-	exec "tabnew"
-	exec 'normal "+gP'
-	exec "w! /tmp/input_data"
+    exec "tabnew"
+    exec 'normal "+gP'
+    exec "w! /tmp/input_data"
 endfunc
 
 source $VIMRUNTIME/vimrc_example.vim
 
 if has('mouse')
-  set mouse=a
+    set mouse=a
 endif
 
 
@@ -64,18 +64,18 @@ nmap <Leader>pa %
 set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-"代码补全 
-set completeopt=preview,menu 
-"允许插件  
+"代码补全
+set completeopt=preview,menu
+"允许插件
 filetype plugin on
-"共享剪贴板  
-set clipboard+=unnamed 
+"共享剪贴板
+set clipboard+=unnamed
 "自动保存
 let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
 augroup ft_markdown
-  au!
-  au FileType markdown let b:auto_save = 1
+    au!
+    au FileType markdown let b:auto_save = 1
 augroup END
 
 "au CursorHoldI * call AutoSave()
@@ -83,7 +83,7 @@ augroup END
 set makeprg=g++\ -Wall\ \ %
 "自动保存
 au FocusLost * silent! wa
-"set autowriteall
+set autowriteall
 set ruler                   " 打开状态栏标尺
 "set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
@@ -91,8 +91,8 @@ set guioptions-=T           " 隐藏工具栏
 set guioptions+=m           " 隐藏菜单栏
 " 设置在状态行显示的信息
 set foldcolumn=0
-set foldmethod=indent 
-set foldlevel=3 
+set foldmethod=indent
+set foldlevel=3
 set foldenable              " 开始折叠
 " 不要使用vi的键盘模式，而是vim自己的
 set nocompatible
@@ -164,46 +164,46 @@ let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 let g:fencview_autodetect=0
 set rtp+=$GOROOT/misc/vim
 
-" 显示相关  
-set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
-"winpos 5 5          " 设定窗口位置  
-"set lines=40 columns=155    " 设定窗口大小  
-set go=             " 不要图形按钮  
-"color asmanian2     " 设置背景主题 
-"set guifont=Courier_New:h10:cANSI   " 设置字体  
-syntax on           " 语法高亮  
-"autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
-"autocmd InsertEnter * se cul    " 用浅色高亮当前行  
-set ruler           " 显示标尺  
-set showcmd         " 输入的命令显示出来，看的清楚些  
-set cmdheight=1     " 命令行（在状态行下）的高度，设置为1  
-"set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)  
-"set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离  
-set novisualbell    " 不要闪烁(不明白)  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)  
-set foldenable      " 允许折叠  
-set foldmethod=manual   " 手动折叠  
-"set background=dark "背景使用黑色 
-set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
+" 显示相关
+set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示
+"winpos 5 5          " 设定窗口位置
+"set lines=40 columns=155    " 设定窗口大小
+set go=             " 不要图形按钮
+"color asmanian2     " 设置背景主题
+"set guifont=Courier_New:h10:cANSI   " 设置字体
+syntax on           " 语法高亮
+"autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+"autocmd InsertEnter * se cul    " 用浅色高亮当前行
+set ruler           " 显示标尺
+set showcmd         " 输入的命令显示出来，看的清楚些
+set cmdheight=1     " 命令行（在状态行下）的高度，设置为1
+"set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
+"set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离
+set novisualbell    " 不要闪烁(不明白)
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)
+set foldenable      " 允许折叠
+set foldmethod=manual   " 手动折叠
+"set background=dark "背景使用黑色
+set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
 " 显示中文帮助
 if version >= 603
-	set helplang=cn
-	set encoding=utf-8
+    set helplang=cn
+    set encoding=utf-8
 endif
 " 设置配色方案
 set nu
 colorscheme desert
-"字体 
-"if (has("gui_running")) 
-"   set guifont=Bitstream\ Vera\ Sans\ Mono\ 10 
-"endif 
+"字体
+"if (has("gui_running"))
+"   set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
+"endif
 
 "markdown配置
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
-"rkdown to HTML  
+"markdown to HTML
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
 nmap fi :!firefox %.html & <CR><CR>
 nmap \ \cc
@@ -213,62 +213,62 @@ vmap \ \cc
 nmap tt :%s/\t/    /g<CR>
 
 """""新文件标题
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1,"\#!/bin/bash")
+        call append(line("."), "")
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python3")
         call append(line("."),"# -*- coding:utf-8 -*-")
-        call append(line(".")+1, "") 
-	    call append(line(".")+2, "'''") 
-        call append(line(".")+3, "Author: jack.chen") 
-        call append(line(".")+4, "Mail: 1259195793@qq.com") 
-        call append(line(".")+5, "Created Time: ".strftime("%c")) 
-        call append(line(".")+6, "'''") 
-        call append(line(".")+7, "") 
-        call append(line(".")+8, "") 
-        call append(line(".")+9, "") 
+        call append(line(".")+1, "")
+        call append(line(".")+2, "'''")
+        call append(line(".")+3, "Author: jack.chen")
+        call append(line(".")+4, "Mail: 1259195793@qq.com")
+        call append(line(".")+5, "Created Time: ".strftime("%c"))
+        call append(line(".")+6, "'''")
+        call append(line(".")+7, "")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "")
     elseif &filetype == 'ruby'
         call setline(1,"#!/usr/bin/env ruby")
         call append(line("."),"# encoding: utf-8")
-	    call append(line(".")+1, "")
+        call append(line(".")+1, "")
 
     elseif &filetype == 'mkd'
         call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: ") 
-		call append(line(".")+2, "	> Mail: ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
-	endif
-	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
-		call append(line(".")+7, "")
-	endif
-	if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-		call append(line(".")+8, "#endif")
-	endif
-	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
-endfunc 
+    else
+        call setline(1, "/*************************************************************************")
+        call append(line("."), "    > File Name: ".expand("%"))
+        call append(line(".")+1, "  > Author: ")
+        call append(line(".")+2, "  > Mail: ")
+        call append(line(".")+3, "  > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
+    endif
+    if expand("%:e") == 'cpp'
+        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+        call append(line(".")+6, "#include<stdio.h>")
+        call append(line(".")+7, "")
+    endif
+    if expand("%:e") == 'h'
+        call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+        call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+        call append(line(".")+8, "#endif")
+    endif
+    if &filetype == 'java'
+        call append(line(".")+6,"public class ".expand("%:r"))
+        call append(line(".")+7,"")
+    endif
+    "新建文件后，自动定位到文件末尾
+endfunc
 autocmd BufNewFile * normal G
 
 "键盘命令
@@ -292,39 +292,39 @@ map <silent> <F11> :call ToggleFullscreen()<CR>
 
 "set clipboard=unnamed
 "快捷键"\+1"
-nnoremap <leader>1 :set filetype=xhtml<CR>  
-nnoremap <leader>2 :set filetype=css<CR> 
+nnoremap <leader>1 :set filetype=xhtml<CR>
+nnoremap <leader>2 :set filetype=css<CR>
 nnoremap <leader>3 :set filetype=javascript<CR>
 nnoremap <leader>4 :set filetype=php<CR>
-"去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
-"比较文件  
-nnoremap <C-F2> :vert diffsplit 
+"去空行
+nnoremap <F2> :g/^\s*$/d<CR>
+"比较文件
+nnoremap <C-F2> :vert diffsplit
 "nnoremap <Leader>fu :CtrlPFunky<Cr>
 "nnoremap <C-n> :CtrlPFunky<Cr>
-"列出当前目录文件  
+"列出当前目录文件
 map <F3> :NERDTreeToggle<CR>
 "imap <F3> <ESC> :NERDTreeToggle<CR>
-"打开树状文件目录  
-map <C-F3> \be  
+"打开树状文件目录
+map <C-F3> \be
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 "C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!time python3 %"
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        exec "!time python3 %"
     elseif &filetype == 'html'
         exec "!firefox % &"
     elseif &filetype == 'go'
@@ -333,14 +333,14 @@ func! CompileRunGcc()
     elseif &filetype == 'mkd'
         exec "!~/.vim/markdown.pl % > %.html &"
         exec "!firefox %.html &"
-	endif
+    endif
 endfunc
 "C,C++的调试
 map <F8> :call Rungdb()<CR>
 func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
 endfunc
 
 "代码格式优化化
@@ -357,11 +357,11 @@ func FormartSrc()
     elseif &filetype == 'perl'
         exec "!astyle --style=gnu --suffix=none %"
     elseif &filetype == 'py'||&filetype == 'python'
-        exec "r !autopep8 -i --aggressive %"
+        exec "r !autopep8 -i --aggressive --ignore=E402,E501 %"
     elseif &filetype == 'java'
         exec "!astyle --style=java --suffix=none %"
     elseif &filetype == 'jsp'
-               exec "!astyle --style=gnu --suffix=none %"
+        exec "!astyle --style=gnu --suffix=none %"
     elseif &filetype == 'xml'
         exec "!astyle --style=gnu --suffix=none %"
     else
@@ -464,45 +464,45 @@ au BufRead,BufNewFile *  setfiletype txt
 :inoremap " ""<ESC>i
 :inoremap ' ''<ESC>i
 function! ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
 endfunction
 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" CTags的设定  
+" CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Sort_Type = "name"    " 按照名称排序  
-let Tlist_Use_Right_Window = 1  " 在右侧显示窗口  
-let Tlist_Compart_Format = 1    " 压缩方式  
-let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer  
-""let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags  
-""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
+let Tlist_Sort_Type = "name"    " 按照名称排序
+let Tlist_Use_Right_Window = 1  " 在右侧显示窗口
+let Tlist_Compart_Format = 1    " 压缩方式
+let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
+""let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
+""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
-"设置tags  
-set tags=tags;  
-set autochdir 
+"设置tags
+set tags=tags;
+set autochdir
 
-"默认打开Taglist 
-let Tlist_Auto_Open=0 
-"""""""""""""""""""""""""""""" 
-" Tag list (ctags) 
-"""""""""""""""""""""""""""""""" 
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
-let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的 
+"默认打开Taglist
+let Tlist_Auto_Open=0
+""""""""""""""""""""""""""""""
+" Tag list (ctags)
+""""""""""""""""""""""""""""""""
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
+let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
 " minibufexpl插件的一般设置
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1  
+let g:miniBufExplModSelTarget = 1
 nmap tl :Tlist<cr>
 
 set iskeyword+=.
@@ -519,7 +519,7 @@ autocmd FileType yaml setlocal ai ts=2 sw=2 et
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " let Vundle manage Vundle
-" required! 
+" required!
 
 Plugin 'L9'
 Plugin 'FuzzyFinder'
@@ -528,7 +528,7 @@ Plugin 'python-imports.vim'
 Plugin 'CaptureClipboard'
 Plugin 'ctrlp-modified.vim'
 Plugin 'last_edit_marker.vim'
-Plugin'synmark.vim'
+Plugin 'synmark.vim'
 Plugin 'SQLComplete.vim'
 Plugin 'Javascript-OmniCompletion-with-YUI-and-j'
 Plugin 'JavaScript-Indent'
@@ -587,9 +587,14 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'suan/vim-instant-markdown'
 Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'kannokanno/previm'
+"Plug 'kannokanno/previm'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+"Plug 'tamlok/vim-markdown'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 Plug 'tell-k/vim-autopep8'
-Plug 'tyru/open-browser.vim'
+"Plug 'tyru/open-browser.vim'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
@@ -647,7 +652,7 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 nnoremap f :NERDTreeToggle
-map <F3> :NERDTreeToggle<CR> 
+map <F3> :NERDTreeToggle<CR>
 
 let $LANG = 'zh_CN.UTF-8'
 source $VIMRUNTIME/delmenu.vim
@@ -656,14 +661,14 @@ source $VIMRUNTIME/menu.vim
 " 寻找全局配置文件
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " 禁用syntastic来对python检查
-let g:syntastic_ignore_files=[".*\.py$"] 
+let g:syntastic_ignore_files=[".*\.py$"]
 " 使用ctags生成的tags文件
 let g:ycm_collect_identifiers_from_tag_files = 1
 " 开启语义补全
 " 修改对C语言的补全快捷键，默认是CTRL+space，修改为ALT+;未测出效果
 "let g:ycm_key_invoke_completion = '<M-;>'
 " 设置转到定义处的快捷键为ALT+G，未测出效果
-"nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR> 
+"nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
 "关键字补全
 let g:ycm_seed_identifiers_with_syntax = 1
 " 在接受补全后不分裂出一个窗口显示接受的项
@@ -713,10 +718,10 @@ nmap <Leader>s :ALEToggle<CR>
 nmap <Leader>d :ALEDetail<CR>
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
+            \   'c++': ['clang'],
+            \   'c': ['clang'],
+            \   'python': ['pylint'],
+            \}
 " }}}
 
 "tagbar设置
@@ -724,7 +729,7 @@ let g:ale_linters = {
 
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 
-"设置tagbar的窗口宽度 
+"设置tagbar的窗口宽度
 let g:tagbar_width=20
 
 "设置tagbar的窗口显示的位置,为左边
@@ -737,24 +742,24 @@ autocmd BufReadPost *.py,*.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 map <F4> :TagbarToggle<CR>
 
 
-"statusline                                                                                                                                
+"statusline
 set statusline=
 set statusline+=%7*\[%n]                                  "buffernr
 set statusline+=%1*\ %<%F\                                "文件路径
 set statusline+=%2*\ %y\                                  "文件类型
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "编码1
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "编码2
-set statusline+=%4*\ %{&ff}\                              "文件系统(dos/unix..) 
+set statusline+=%4*\ %{&ff}\                              "文件系统(dos/unix..)
 set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "语言 & 是否高亮，H表示高亮?
 set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "光标所在行号/总行数 (百分比)
 set statusline+=%9*\ col:%03c\                            "光标所在列
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Read only? Top/bottom
 function! HighlightSearch()
-      if &hls
-          return 'H'
-      else
-          return ''
-      endif
+    if &hls
+        return 'H'
+    else
+        return ''
+    endif
 endfunction
 hi User1 ctermfg=white  ctermbg=darkred
 hi User2 ctermfg=blue  ctermbg=58
@@ -766,4 +771,39 @@ hi User8 ctermfg=231  ctermbg=blue
 "hi User9 ctermfg=#ffffff  ctermbg=#810085
 hi User0 ctermfg=yellow  ctermbg=138
 
+let g:mkdp_path_to_chrome = "firefox"
+" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+" 如果设置了该参数, g:mkdp_browserfunc 将被忽略
+
+let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+" vim 回调函数, 参数为要打开的 url
+
+let g:mkdp_auto_start = 1
+" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开
+" markdown 文件的时候打开一次
+
+let g:mkdp_auto_open = 1
+" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预
+" 览窗口
+
+let g:mkdp_auto_close = 1
+" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不
+" 自动关闭预览窗口
+
+let g:mkdp_refresh_slow = 0
+" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
+" 更新预览
+
+let g:mkdp_command_for_global = 0
+" 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown
+" 文件可以使用改命令
+
+let g:mkdp_open_to_the_world = 0
+" 设置为 1, 在使用的网络中的其他计算机也能访问预览页面
+" 默认只监听本地（127.0.0.1），其他计算机不能访问
+
+nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
+imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
+nmap <silent> <C-F8> <Plug>StopMarkdownPreview    " 普通模式
+imap <silent> <C-F8> <Plug>StopMarkdownPreview    " 插入模式
 
