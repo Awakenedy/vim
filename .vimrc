@@ -302,6 +302,8 @@ nnoremap <F2> :g/^\s*$/d<CR>
 nnoremap <C-F2> :vert diffsplit
 "nnoremap <Leader>fu :CtrlPFunky<Cr>
 "nnoremap <C-n> :CtrlPFunky<Cr>
+"折叠
+set fdm=indent
 "列出当前目录文件
 map <F3> :NERDTreeToggle<CR>
 "imap <F3> <ESC> :NERDTreeToggle<CR>
@@ -541,6 +543,7 @@ Plugin 'jsbeautify'
 Plugin 'The-NERD-Commenter'
 Plugin 'django_templates.vim'
 Plugin 'Django-Projects'
+Plugin 'xml.vim'
 "Plugin 'Valloric/YouCompleteMe'
 
 call plug#begin('~/.vim/bundle')
@@ -596,6 +599,7 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'tell-k/vim-autopep8'
 "Plug 'tyru/open-browser.vim'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'TimothyYe/vim-ydict'
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
 Plug 'kovisoft/paredit', { 'for': ['clojure', 'scheme'] }
@@ -807,3 +811,10 @@ imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
 nmap <silent> <C-F8> <Plug>StopMarkdownPreview    " 普通模式
 imap <silent> <C-F8> <Plug>StopMarkdownPreview    " 插入模式
 
+"vim-ydict 设置
+"按Ctrl+t查询所选单词：
+vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+"使用<leader>+yc查询当前光标位置的单词：
+nnoremap <leader>yc :<C-u>Ydc<CR>
+"使用<leader>+yd输入要查
+noremap <leader>yd :<C-u>Yde<CR>
