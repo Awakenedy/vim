@@ -180,7 +180,7 @@ set cmdheight=1     " 命令行（在状态行下）的高度，设置为1
 "set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
 "set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}   "状态行显示的内容
 set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)
 set foldenable      " 允许折叠
 set foldmethod=manual   " 手动折叠
