@@ -3,8 +3,10 @@
 
 scriptencoding utf-8
 
-let s:error_symbol = get(g:, 'airline#extensions#ale#error_symbol', 'E:')
-let s:warning_symbol = get(g:, 'airline#extensions#ale#warning_symbol', 'W:')
+"let s:error_symbol = get(g:, 'airline#extensions#ale#error_symbol', 'E:')
+"let s:warning_symbol = get(g:, 'airline#extensions#ale#warning_symbol', 'W:')
+let s:error_symbol = get(g:, 'airline#extensions#ale#error_symbol', '✗ ')
+let s:warning_symbol = get(g:, 'airline#extensions#ale#warning_symbol', '⚡ ')
 let s:show_line_numbers = get(g:, 'airline#extensions#ale#show_line_numbers', 1)
 
 function! s:airline_ale_count(cnt, symbol)
