@@ -58,7 +58,7 @@ nmap <Leader>pa %
 
 " 让配置变更立即生效
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
+autocmd BufWritePost *.py call Flake8()
 ""实用设置
 " 设置当文件被改动时自动载入
 set autoread
@@ -180,7 +180,6 @@ set cmdheight=1     " 命令行（在状态行下）的高度，设置为1
 "set whichwrap+=<,>,h,l   " 允许backspace和光标键跨越行边界(不建议)
 "set scrolloff=3     " 光标移动到buffer的顶部和底部时保持3行距离
 set novisualbell    " 不要闪烁(不明白)
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}   "状态行显示的内容
 set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)
 set foldenable      " 允许折叠
 set foldmethod=manual   " 手动折叠
@@ -411,9 +410,6 @@ set fileencodings=utf-8,gb2312,ucs-bom,euc-cn,euc-tw,gb18030,gbk,cp936
 "语言设置
 set langmenu=zh_CN.UTF-8
 set helplang=cn
-" 我的状态行显示的内容（包括文件类型和解码）
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
 " 总是显示状态行
 set laststatus=2
 " 命令行（在状态行下）的高度，默认为1，这里是2
@@ -506,7 +502,7 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 nmap tl :Tlist<cr>
-
+let g:indentLine_char = '┊'
 set iskeyword+=.
 set termencoding=utf-8
 set encoding=utf8
@@ -551,7 +547,6 @@ Plug 'gmarik/vundle'
 Plug 'tpope/vim-fugitive'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'Yggdroot/indentLine'
-let g:indentLine_char = '┊'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'junegunn/vim-easy-align'
 Plug 'https://github.com/wincent/command-t.git'
@@ -595,7 +590,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 "Plug 'tamlok/vim-markdown'
 Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'tell-k/vim-autopep8'
 "Plug 'tyru/open-browser.vim'
 Plug 'vim-scripts/indentpython.vim'
@@ -607,11 +602,13 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-"自动缩进
 Plug 'vim-scripts/indentpython.vim'
-"补全
 "Plug 'maralla/completor.vim'
 "Plug 'maralla/completor-neosnippet'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'dense-analysis/ale'
+
 " 补全设置 {{{
 "使用tab补全
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -620,7 +617,6 @@ Plug 'vim-scripts/indentpython.vim'
 " }}}
 
 "注释
-Plug 'scrooloose/nerdcommenter'
 " 注释说明 {{{
 "<leader>cc   加注释
 "<leader>cu   解开注释
@@ -643,7 +639,6 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 "let NERDTreeIgnore=['\.pyc']
 
-Plug 'scrooloose/nerdtree'
 "NERDtee设定
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
@@ -697,9 +692,9 @@ let g:ycm_use_ultisnips_completer=1
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=#000000 guibg=#111100
 map <F7> :YcmCompleter GoTo<CR>
 
-"异步语法检查
-Plugin 'w0rp/ale'
-" ale-setting {{{
+"ale
+"始终开启标志列
+let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 "自定义error和warning图标
 let g:ale_sign_error = '✗'
@@ -707,12 +702,9 @@ let g:ale_sign_warning = '⚡'
 "在vim自带的状态栏中整合ale
 let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
 "显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = '✗'
+let g:ale_echo_msg_warning_str = '⚡'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
@@ -720,13 +712,23 @@ nmap sn <Plug>(ale_next_wrap)
 nmap <Leader>s :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>d :ALEDetail<CR>
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-            \   'c++': ['clang'],
-            \   'c': ['clang'],
-            \   'python': ['pylint'],
-            \}
-" }}}
+  \   'csh': ['shell'],
+  \   'go': ['gofmt', 'golint', 'go vet'],
+  \   'help': [],
+  \   'perl': ['perlcritic'],
+  \   'python': ['flake8', 'mypy', 'pylint'],
+  \   'rust': ['cargo'],
+  \   'spec': [],
+  \   'text': [],
+  \   'zsh': ['shell'], 
+  \   'reStructuredText': ['rstcheck'], 
+  \   'javascript': ['eslint'],
+  \   'c++': ['clang'],
+  \   'c': ['clang'],
+\}
+let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
+let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 
 "tagbar设置
 "设置tagbar使用的ctags的插件,必须要设置对
@@ -745,76 +747,95 @@ autocmd BufReadPost *.py,*.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 "映射tagbar的快捷键
 map <F4> :TagbarToggle<CR>
 
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
 
-"statusline
-set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "文件路径
-set statusline+=%2*\ %y\                                  "文件类型
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "编码1
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "编码2
-set statusline+=%4*\ %{&ff}\                              "文件系统(dos/unix..)
-set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "语言 & 是否高亮，H表示高亮?
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "光标所在行号/总行数 (百分比)
-set statusline+=%9*\ col:%03c\                            "光标所在列
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Read only? Top/bottom
-function! HighlightSearch()
-    if &hls
-        return 'H'
-    else
-        return ''
-    endif
-endfunction
-hi User1 ctermfg=white  ctermbg=darkred
-hi User2 ctermfg=blue  ctermbg=58
-hi User3 ctermfg=white  ctermbg=100
-hi User4 ctermfg=darkred  ctermbg=95
-hi User5 ctermfg=darkred  ctermbg=77
-hi User7 ctermfg=darkred  ctermbg=blue  cterm=bold
-hi User8 ctermfg=231  ctermbg=blue
-"hi User9 ctermfg=#ffffff  ctermbg=#810085
-hi User0 ctermfg=yellow  ctermbg=138
-
-let g:mkdp_path_to_chrome = "firefox"
-" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
-" 如果设置了该参数, g:mkdp_browserfunc 将被忽略
-
-let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
-" vim 回调函数, 参数为要打开的 url
-
-let g:mkdp_auto_start = 1
-" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开
-" markdown 文件的时候打开一次
-
-let g:mkdp_auto_open = 1
-" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预
-" 览窗口
-
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
 let g:mkdp_auto_close = 1
-" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不
-" 自动关闭预览窗口
 
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
 let g:mkdp_refresh_slow = 0
-" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
-" 更新预览
 
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
 let g:mkdp_command_for_global = 0
-" 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown
-" 文件可以使用改命令
 
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
 let g:mkdp_open_to_the_world = 0
-" 设置为 1, 在使用的网络中的其他计算机也能访问预览页面
-" 默认只监听本地（127.0.0.1），其他计算机不能访问
 
-nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
-imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
-nmap <silent> <C-F8> <Plug>StopMarkdownPreview    " 普通模式
-imap <silent> <C-F8> <Plug>StopMarkdownPreview    " 插入模式
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = ''
+
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 0
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {}
+    \ }
+
+" use a custom markdown style must be absolute path
+let g:mkdp_markdown_css = ''
+
+" use a custom highlight style must absolute path
+let g:mkdp_highlight_css = ''
+
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+nmap <F8> <Plug>MarkdownPreview
+nmap <C-F8> <Plug>MarkdownPreviewStop
+nmap <S-F8> <Plug>MarkdownPreviewToggle
 
 "vim-ydict 设置
 "按Ctrl+t查询所选单词：
-vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+vnoremap <silent> <C-f> :<C-u>Ydv<CR>
 "使用<leader>+yc查询当前光标位置的单词：
 nnoremap <leader>yc :<C-u>Ydc<CR>
 "使用<leader>+yd输入要查
 noremap <leader>yd :<C-u>Yde<CR>
+
