@@ -7,8 +7,8 @@ Installation
 
 	cd ~/.vim/bundle/YouCompleteMe
 
-	python3 install.py --clang-completer
+	python3 install.py --clang-completer --go-completer
 
 	 pip3 install autopep8
-       pip3 install flake8 
+         pip3 install flake8 
 
