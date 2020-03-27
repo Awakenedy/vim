@@ -71,8 +71,9 @@ filetype plugin on
 "共享剪贴板
 set clipboard+=unnamed
 "自动保存
-let g:auto_save = 0
-let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
+let autosave=10
+"let g:auto_save = 0
+"let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
 augroup ft_markdown
     au!
     au FileType markdown let b:auto_save = 1
@@ -82,8 +83,8 @@ augroup END
 "make 运行
 set makeprg=g++\ -Wall\ \ %
 "自动保存
-au FocusLost * silent! wa
-set autowriteall
+"au FocusLost * silent! wa
+"set autowriteall
 set ruler                   " 打开状态栏标尺
 "set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
@@ -122,7 +123,7 @@ set number
 set history=1000
 "禁止生成临时文件
 set nobackup
-set noswapfile
+"set noswapfile
 "搜索忽略大小写
 set ignorecase
 " 开启实时搜索功能
