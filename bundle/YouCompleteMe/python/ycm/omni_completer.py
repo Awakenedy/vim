@@ -1,4 +1,4 @@
-# Copyright (C) 2011, 2012, 2013  Google Inc.
+# Copyright (C) 2011-2019 ycmd contributors
 #
 # This file is part of YouCompleteMe.
 #
@@ -14,13 +14,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with YouCompleteMe.  If not, see <http://www.gnu.org/licenses/>.
-
-from __future__ import unicode_literals
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-# Not installing aliases from python-future; it's unreliable and slow.
-from builtins import *  # noqa
 
 import vim
 from ycm import vimsupport
@@ -123,7 +116,20 @@ class OmniCompleter( Completer ):
       if not hasattr( items, '__iter__' ):
         raise TypeError( OMNIFUNC_NOT_LIST )
 
-      return list( filter( bool, items ) )
+      # Vim allows each item of the list to be either a string or a dictionary
+      # but ycmd only supports lists where items are all strings or all
+      # dictionaries. Convert all strings into dictionaries.
+      for index, item in enumerate( items ):
+        # Set the 'equal' field to 1 to disable Vim filtering.
+        if not isinstance( item, dict ):
+          items[ index ] = {
+            'word': item,
+            'equal': 1
+          }
+        else:
+          item[ 'equal' ] = 1
+
+      return items
 
     except ( TypeError, ValueError, vim.error ) as error:
       vimsupport.PostVimMessage(

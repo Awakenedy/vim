@@ -19,9 +19,9 @@
 #include "ClangHelpers.h"
 #include "CompletionData.h"
 #include "TranslationUnit.h"
+#include "Utils.h"
 
 #include <algorithm>
-#include <boost/filesystem.hpp>
 #include <cstdlib>
 #include <memory>
 
@@ -52,7 +52,8 @@ unsigned ReparseOptions( CXTranslationUnit translationUnit ) {
 
 unsigned CompletionOptions() {
   return clang_defaultCodeCompleteOptions() |
-         CXCodeComplete_IncludeBriefComments;
+         CXCodeComplete_IncludeBriefComments |
+         CXCodeComplete_IncludeCompletionsWithFixIts;
 }
 
 void EnsureCompilerNamePresent( std::vector< const char * > &flags ) {
@@ -327,6 +328,18 @@ std::string TranslationUnit::GetTypeAtLocation(
     return "Internal error: cursor not valid";
   }
 
+  // Cursors on member functions return a rather unhelpful type text of
+  // "bound member function type".  To get a meaningful type, we must examine
+  // the referenced cursor.  We must be careful though, as both member variables
+  // and member functions are of kind MemberRefExpr, and getting the referenced
+  // cursor of a cv-qualified type discards the cv-qualification.
+  if ( clang_getCursorKind( cursor ) == CXCursor_MemberRefExpr ) {
+    CXCursor ref = clang_getCursorReferenced( cursor );
+    if ( clang_getCursorKind( ref ) == CXCursor_CXXMethod ) {
+      cursor = ref;
+    }
+  }
+
   CXType type = clang_getCursorType( cursor );
 
   std::string type_description =
@@ -509,16 +522,15 @@ std::vector< FixIt > TranslationUnit::GetFixItsForLocationInFile(
 
   std::vector< FixIt > fixits;
 
-  auto canonical_filename = boost::filesystem::canonical( filename );
+  auto normal_filename = NormalizePath( filename );
 
   {
     unique_lock< mutex > lock( diagnostics_mutex_ );
 
     for ( const Diagnostic& diagnostic : latest_diagnostics_ ) {
-      auto this_filename = boost::filesystem::canonical(
-        diagnostic.location_.filename_ );
+      auto this_filename = NormalizePath( diagnostic.location_.filename_ );
 
-      if ( canonical_filename != this_filename ) {
+      if ( normal_filename != this_filename ) {
         continue;
       }
 

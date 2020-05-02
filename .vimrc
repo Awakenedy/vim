@@ -73,7 +73,7 @@ set clipboard+=unnamed
 "自动保存
 let autosave=10
 "let g:auto_save = 0
-"let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
+"let g:auto_save_events = ["InsertLeave", a"TextChanged", a"TextChangedI", a"CursorHoldI", a"CompleteDone"]
 augroup ft_markdown
     au!
     au FileType markdown let b:auto_save = 1
@@ -85,6 +85,8 @@ set makeprg=g++\ -Wall\ \ %
 "自动保存
 "au FocusLost * silent! wa
 "set autowriteall
+"备份
+"set backup
 set ruler                   " 打开状态栏标尺
 "set cursorline              " 突出显示当前行
 set magic                   " 设置魔术
@@ -189,7 +191,7 @@ set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本�
 " 显示中文帮助
 if version >= 603
     set helplang=cn
-    set encoding=utf-8
+set encoding=utf-8
 endif
 " 设置配色方案
 set nu
@@ -217,57 +219,57 @@ nmap tt :%s/\t/    /g<CR>
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
 ""定义函数SetTitle，自动插入文件头
 func SetTitle()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1,"\#!/bin/bash")
-        call append(line("."), "")
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python3")
-        call append(line("."),"# -*- coding:utf-8 -*-")
-        call append(line(".")+1, "")
-        call append(line(".")+2, "'''")
-        call append(line(".")+3, "Author: jack.chen")
-        call append(line(".")+4, "Mail: 1259195793@qq.com")
-        call append(line(".")+5, "Created Time: ".strftime("%c"))
-        call append(line(".")+6, "'''")
-        call append(line(".")+7, "")
-        call append(line(".")+8, "")
-        call append(line(".")+9, "")
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line("."),"# encoding: utf-8")
-        call append(line(".")+1, "")
+"如果文件类型为.sh文件
+if &filetype == 'sh'
+    call setline(1,"\#!/bin/bash")
+    call append(line("."), "")
+elseif &filetype == 'python'
+    call setline(1,"#!/usr/bin/env python3")
+    call append(line("."),"# -*- coding:utf-8 -*-")
+    call append(line(".")+1, "")
+    call append(line(".")+2, "'''")
+    call append(line(".")+3, "Author: jack.chen")
+    call append(line(".")+4, "Mail: 1259195793@qq.com")
+    call append(line(".")+5, "Created Time: ".strftime("%c"))
+    call append(line(".")+6, "'''")
+    call append(line(".")+7, "")
+    call append(line(".")+8, "")
+    call append(line(".")+9, "")
+elseif &filetype == 'ruby'
+    call setline(1,"#!/usr/bin/env ruby")
+    call append(line("."),"# encoding: utf-8")
+    call append(line(".")+1, "")
 
-    elseif &filetype == 'mkd'
-        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-    else
-        call setline(1, "/*************************************************************************")
-        call append(line("."), "    > File Name: ".expand("%"))
-        call append(line(".")+1, "  > Author: ")
-        call append(line(".")+2, "  > Mail: ")
-        call append(line(".")+3, "  > Created Time: ".strftime("%c"))
-        call append(line(".")+4, " ************************************************************************/")
-        call append(line(".")+5, "")
-    endif
-    if expand("%:e") == 'cpp'
-        call append(line(".")+6, "#include<iostream>")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+6, "#include<stdio.h>")
-        call append(line(".")+7, "")
-    endif
-    if expand("%:e") == 'h'
-        call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-        call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
-        call append(line(".")+8, "#endif")
-    endif
-    if &filetype == 'java'
-        call append(line(".")+6,"public class ".expand("%:r"))
-        call append(line(".")+7,"")
-    endif
-    "新建文件后，自动定位到文件末尾
+elseif &filetype == 'mkd'
+    call setline(1,"<head><meta charset=\"UTF-8\"></head>")
+else
+    call setline(1, "/*************************************************************************")
+    call append(line("."), "    > File Name: ".expand("%"))
+    call append(line(".")+1, "  > Author: ")
+    call append(line(".")+2, "  > Mail: ")
+    call append(line(".")+3, "  > Created Time: ".strftime("%c"))
+    call append(line(".")+4, " ************************************************************************/")
+    call append(line(".")+5, "")
+endif
+if expand("%:e") == 'cpp'
+    call append(line(".")+6, "#include<iostream>")
+    call append(line(".")+7, "using namespace std;")
+    call append(line(".")+8, "")
+endif
+if &filetype == 'c'
+    call append(line(".")+6, "#include<stdio.h>")
+    call append(line(".")+7, "")
+endif
+if expand("%:e") == 'h'
+    call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+    call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+    call append(line(".")+8, "#endif")
+endif
+if &filetype == 'java'
+    call append(line(".")+6,"public class ".expand("%:r"))
+    call append(line(".")+7,"")
+endif
+"新建文件后，自动定位到文件末尾
 endfunc
 autocmd BufNewFile * normal G
 
@@ -284,6 +286,7 @@ map <F12> gg=G
 map <C-w> <C-w>w
 imap <C-k> <C-y>,
 imap <C-t> <C-q><TAB>
+imap <F6> <C-x><C-o>
 imap <C-j> <ESC>
 " 全屏开/关快捷键
 map <silent> <F11> :call ToggleFullscreen()<CR>
@@ -309,24 +312,24 @@ map <F3> :NERDTreeToggle<CR>
 "imap <F3> <ESC> :NERDTreeToggle<CR>
 "打开树状文件目录
 map <C-F3> \be
-:autocmd BufRead,BufNewFile *.dot map <S-F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
+autocmd BufRead,BufNewFile *.dot map <S-F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 "C，C++ 按ctrl-F5编译运行
 map <C-F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
+	exec "!g++ % -o %<"
+	exec "!time ./%<"
     elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
+	exec "!g++ % -o %<"
+	exec "!time ./%<"
+    elseif &filetype == 'java' 
+	exec "!javac %" 
+	exec "!time java %<"
     elseif &filetype == 'sh'
-        :!time bash %
+	:!time bash %
     elseif &filetype == 'python'
-        exec "!time python3 %"
+	exec "!time python2.7 %"
     elseif &filetype == 'html'
         exec "!firefox % &"
     elseif &filetype == 'go'
@@ -337,8 +340,9 @@ func! CompileRunGcc()
         exec "!firefox %.html &"
     endif
 endfunc
+
 "C,C++的调试
-map <F8> :call Rungdb()<CR>
+map <F8>:call Rungdb()<CR>
 func! Rungdb()
     exec "w"
     exec "!g++ % -g -o %<"
@@ -347,7 +351,7 @@ endfunc
 
 "代码格式优化化
 
-map <F6> :call FormartSrc()<CR><CR>
+map <C-F6>:call FormartSrc()<CR><CR>
 
 "定义FormartSrc()
 func FormartSrc()
@@ -359,7 +363,7 @@ func FormartSrc()
     elseif &filetype == 'perl'
         exec "!astyle --style=gnu --suffix=none %"
     elseif &filetype == 'py'||&filetype == 'python'
-        exec "r !autopep8 -i --aggressive --ignore=E402,E501 %"
+        exec "r !nutopep8 -i --aggressive --ignore=E402,E501 %"
     elseif &filetype == 'java'
         exec "!astyle --style=java --suffix=none %"
     elseif &filetype == 'jsp'
@@ -595,6 +599,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'tell-k/vim-autopep8'
 "Plug 'tyru/open-browser.vim'
+Plug 'nsf/gocode'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'TimothyYe/vim-ydict'
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -840,4 +845,11 @@ vnoremap <silent> <C-f> :<C-u>Ydv<CR>
 nnoremap <leader>yc :<C-u>Ydc<CR>
 "使用<leader>+yd输入要查
 noremap <leader>yd :<C-u>Yde<CR>
+
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_structs = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_build_constraints = 1
+"let g:go_fmt_command = "goimports"
 
