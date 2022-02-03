@@ -253,14 +253,6 @@ elseif &filetype == 'ruby'
 
 elseif &filetype == 'mkd'
     call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-else
-    call setline(1, "/*************************************************************************")
-    call append(line("."), "    > File Name: ".expand("%:t"))
-    call append(line(".")+1, "  > Author: jack.chen")
-    call append(line(".")+2, "  > Mail: 1259195793@qq.com")
-    call append(line(".")+3, "  > Created Time: ".strftime("%c"))
-    call append(line(".")+4, " ************************************************************************/")
-    call append(line(".")+5, "")
 endif
 if expand("%:e") == 'cpp'
     call append(line(".")+6, "#include<iostream>")
