@@ -235,17 +235,6 @@ elseif &filetype == 'python'
     call append(line(".")+7, "")
     call append(line(".")+8, "")
     call append(line(".")+9, "")
-elseif &filetype == 'go'
-    call setline(2,"/*================================================")
-    call append(line(".")+1, " File Name: ".expand("%:t"))
-    call append(line(".")+2, "Author: jack.chen")
-    call append(line(".")+3, "Mail: 1259195793@qq.com")
-    call append(line(".")+4, "Created Time: ".strftime("%c"))
-    call append(line(".")+5, "=================================================*/")
-    call append(line(".")+6, "")
-    call append(line(".")+7, "")
-    call append(line(".")+8, "")
-    call append(line(".")+9, "")
 elseif &filetype == 'ruby'
     call setline(1,"#!/usr/bin/env ruby")
     call append(line("."),"# encoding: utf-8")
@@ -528,6 +517,7 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 
+Plugin 'ferrine/md-img-paste.vim'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 Plugin 'Auto-Pairs'
@@ -618,6 +608,10 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
+
+let g:mdip_imgdir = '.'
+ " let g:mdip_imgname = 'image'
+ autocmd FileType markdown nmap <buffer><silent> <leader>i :call mdip#MarkdownClipboardImage()<CR>
 
 " 补全设置 {{{
 "使用tab补全
