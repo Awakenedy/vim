@@ -6,6 +6,7 @@
 	2、mv ~/.vim/.vimrc ~/
 	
 二、安装ycm
+
 	一.apt install build-essential cmake python3-dev  clang-14 lldb-14 lld-14 gcc-11 g++-11
 
 	二.cd /root/.vim/bundle
