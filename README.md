@@ -29,7 +29,6 @@ Installation
         出现：Building regex module…/usr/bin/python3: can’t open file ‘/root/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/mrab-regex/setup.py  #不能打开mrab-regex下的setup.py.查看了一下mrab-regex没有文件
 
         解决：1.cd /root/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/
-
 　　　        2.git clone https://github.com/mrabarnett/mrab-regex.git
 
     十、cd ~/.vim/bundle/YouCompleteMe
