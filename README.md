@@ -34,5 +34,6 @@
 	九.python3 install.py --clangd-completer --go-completer --force-sudo 
 
 三、ptyon 安装 autopep8与flake8
+
 	pip3 install autopep8
 	pip3 install flake8 
