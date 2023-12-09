@@ -11,7 +11,7 @@
 
 	二.cd /root/.vim/bundle
 
-	三.git clone https://ghproxy.com/https://github.com/ycm-core/YouCompleteMe.git
+	三.git clone https://github.com/ycm-core/YouCompleteMe.git
 
 	四.cd ~/.vim/bundle/YouCompleteMe
 
