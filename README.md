@@ -38,3 +38,13 @@
 
 	pip3 install autopep8
 	pip3 install flake8 
+
+四 安装vim-go
+
+	git clone https://github.com/Awakenedy/vim-go.git ~/.vim/bundle/vim-go
+
+	打开vim 运行：GoInstallBinaries， 该命令将安装所有必需的二进制文件。
+
+	在 Vim 中打开 Go 文件后，将光标移动到函数名上，按下 Ctrl+] 可以跳转到函数定义。按下 Ctrl+T 可以返回到之前的位置。
+
+ 
