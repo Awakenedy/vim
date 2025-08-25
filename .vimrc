@@ -195,7 +195,7 @@ set encoding=utf-8
 endif
 " 设置配色方案
 set nu
-colorscheme desert
+"colorscheme desert
 "字体
 "if (has("gui_running"))
 "   set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
