@@ -47,4 +47,11 @@
 
 	在 Vim 中打开 Go 文件后，将光标移动到函数名上，按下 Ctrl+] 可以跳转到函数定义。按下 Ctrl+T 可以返回到之前的位置。
 
+五 安装emmet-vim
+
+    cd \~/.vim/bundle
+
+    git clone https://github.com/mattn/emmet-vim.git
+
+
  
