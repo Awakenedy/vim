@@ -49,7 +49,7 @@
 
 五 安装emmet-vim
 
-    cd \~/.vim/bundle
+    cd  ~/.vim/bundle
 
     git clone https://github.com/mattn/emmet-vim.git
 
